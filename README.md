@@ -1,230 +1,86 @@
-# UIDAI-Data-Hackathon
+Aadhaar Data Analysis – UIDAI Data Hackathon
+📌 Overview
 
-1️⃣ Project Overview
+This project performs an end-to-end analysis of Aadhaar enrolment, biometric, and demographic datasets to uncover societal trends, operational gaps, and data quality issues.
+The solution focuses on data cleaning, anomaly detection, trend analysis, and actionable insights to support data-driven governance and administrative planning.
 
-Aadhaar is the world’s largest digital identity ecosystem, generating massive volumes of data through enrolment, biometric updates, and demographic updates.
-This project analyzes UIDAI-provided datasets to uncover societal trends, regional behaviour, data quality gaps, and operational inefficiencies.
+🎯 Objectives
 
-The objective is to transform raw Aadhaar data into actionable insights that can support:
+Analyze large-scale Aadhaar datasets
 
-Policy formulation
+Identify data errors and inconsistencies
 
-Administrative planning
+Detect anomalies and regional patterns
 
-Workforce and infrastructure optimisation
+Support decision-making with clear insights and forecasts
 
-This project was developed as part of the UIDAI Data Hackathon / EY-style analytics challenge.
+📂 Datasets Used
 
-2️⃣ Errors in the Dataset (Data Quality Issues)
+Aadhaar Enrolment Data – age-wise enrolment trends
 
-The datasets reflect real-world government data challenges, including:
+Biometric Update Data – biometric coverage and update cycles
 
-Duplicate records across datasets
+Demographic Update Data – population mobility and corrections
 
-Inconsistent state name formats
+Each dataset includes state, district, date, age groups, and geospatial attributes.
 
-District naming inconsistencies
+⚠️ Data Issues Identified
+
+Duplicate records
+
+Inconsistent state and district names
 
 Invalid or mismatched pincodes
 
-High-cardinality categorical fields
+Uneven data distribution across regions
 
-Examples of inconsistent state names:
+These issues reflect real-world government data challenges.
 
-dadra and nagar haveli
+🧹 Data Cleaning & Processing
 
-dadra & nagar haveli
+Removed duplicate records
 
-daman & diu
+Standardized state and district names
 
-daman and diu
+Fixed naming issues using reference mappings
 
-dadra and nagar haveli and daman and diu
+Added latitude & longitude using pincode mapping
 
-These errors required extensive cleaning, standardisation, and validation.
+Validated data after each transformation
 
-3️⃣ Total Number of Records (Before & After Cleaning)
-🔹 Biometric Update Dataset
+📊 Analysis Highlights
 
-Total records: 1,861,108
+Zone-wise and state-wise enrolment patterns
 
-Duplicate records: 94,896
+Biometric update trends and low-activity regions
 
-Records after cleaning: 1,766,212
+Demographic update behaviour in migration-heavy districts
 
-States identified: 57
+Anomaly detection in border and tribal regions
 
-Districts:
+Seasonal trends and workload forecasting
 
-Raw: 950
+🔍 Key Insights
 
-Cleaned: 750
+Enrolment saturation in several southern and western states
 
-🔹 Enrolment Dataset
+Migration-heavy districts show high demographic update activity
 
-Total records: 1,006,029
+Infrastructure gaps in low biometric-update regions
 
-Duplicate records: 22,957
+Strong seasonal patterns in enrolment and updates
 
-Records after cleaning: 983,051
+💡 Recommendations
 
-States identified: 54
+Early-warning system for abnormal drops or spikes
 
-Districts cleaned: 950 → 750
+Targeted outreach for child biometric updates
 
-🔹 Demographic Update Dataset
+Predictive capacity planning for enrolment centres
 
-Total records: 2,071,700
+Stronger data validation at source
 
-Duplicate records: 473,601
-
-Records after cleaning: 1,598,097
-
-States identified: 64
-
-Districts cleaned: 946 → 750
-
-4️⃣ Error Handling & Data Cleaning Approach
-
-To resolve dataset errors, the following steps were applied:
-
-Merged multiple raw files into consolidated datasets
-
-Removed duplicate records using PySpark
-
-Standardized state names using mapping logic (e.g., Uttaranchal → Uttarakhand)
-
-Fixed district names using an external pincode reference dataset
-
-Added latitude and longitude to all datasets via pincode mapping
-
-Validated record counts after every transformation
-
-Ensured final datasets contained no null values
-
-This process made the data analysis-ready and reliable.
-
-5️⃣ Methodology
-5.1 Data Ingestion & Standardisation
-
-Ingested large datasets using Databricks
-
-Combined fragmented files into three master datasets
-
-5.2 Feature Engineering
-
-Created analytical features such as:
-
-State-level aggregation
-
-District-level aggregation
-
-Combined update metrics across age groups
-
-5.3 Analytical Techniques
-
-Univariate, bivariate, and multivariate analysis
-
-Time-series analysis and seasonality detection
-
-Geospatial analysis using maps
-
-Cross-dataset correlation analysis
-
-Anomaly detection for unusual patterns
-
-6️⃣ Data Analysis & Visualisation Highlights
-🔹 Enrolment Trends
-
-State-wise enrolment density heatmaps
-
-Abnormal enrolment spikes near Gujarat and West Bengal borders
-
-Lower adult enrolment indicating saturation coverage
-
-🔹 Biometric Update Patterns
-
-State-wise and month-wise update trends
-
-Population-wise update distribution
-
-Identification of low-activity districts
-
-🔹 Demographic Update Behaviour
-
-Migration-heavy districts leading in demographic updates
-
-District-level activity concentration
-
-🔹 Anomaly Detection
-
-Detected anomalies include:
-
-Invalid state/district/pincode records
-
-Unexpected spikes due to migration or administrative drives
-
-Lower activity in tribal belts (Chhattisgarh, Jharkhand, Andhra Pradesh)
-
-7️⃣ Forecasting Results
-
-Strong seasonal patterns identified
-
-Expected workload surges in March, May, and October
-
-Useful for enrolment center capacity planning
-
-8️⃣ Key Insights
-Behavioural Insights
-
-Migration-heavy districts dominate demographic updates
-
-Uneven biometric update coverage for children
-
-Enrolment saturation in southern and western states
-
-Operational Insights
-
-Infrastructure gaps in Odisha and Chhattisgarh
-
-Persistent low biometric update activity in specific districts
-
-Social Insights
-
-Rising digital adoption reflected in demographic updates
-
-Higher enrolment in 0–5 age group indicating population growth
-
-9️⃣ Recommendations & Solution Framework
-🔹 Integrated Data Validation
-
-Dropdown-based selection of state, district, and pincode
-
-Prevents invalid data entry
-
-🔹 Early-Warning System
-
-Alerts triggered by:
-
-Zero-activity months
-
-40% drops in enrolment or updates
-
-Abnormal spikes or device failure patterns
-
-🔹 Targeted Outreach
-
-Awareness campaigns for child biometric updates
-
-Special drives in migration-heavy districts
-
-🔹 Predictive Capacity Planning
-
-Advance resource allocation before surge months
-
-Workforce and device optimisation
-
-🔟 Tools & Technologies Used
+🛠️ Tools & Technologies
 
 Databricks
 
@@ -236,8 +92,15 @@ Python
 
 Power BI
 
+Pandas, NumPy, Matplotlib, Plotly
 
+👥 Team
 
-Folium / Kepler.gl
+Gopal Datt
+Rajdeep Ramola
 
-GitHub (version control)
+Vipul Bijalwan
+
+Gopal Datt
+
+📅 Date of Submission: 20 January 2026
